@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+    * {
+        padding: 0px;
+        margin: 0px;
+    }
+    body {
+        max-width: 100%;
+        box-sizing: border-box;
+        background-image: url("https://yur-gazeta.ru/wp-content/uploads/2020/03/11-001002.jpg");
+    }
+    .header {
+        color: white;
+        font-family: SansSerif;
+        padding: 30px 20px;
+        /*background:#1C1C1CFF;*/
+        ;
+    }
+    .home-logo {
+        padding: 10px;
+        background: red;
+        border-radius: 50px;
+    }
+    p {
+        font-size: x-large;
+    }
+    .home-content {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding-top: 15px;
+    }
+    form {
+        width: auto;
+    }
+    .search-item {
+        width: 250px;
+        height: 42px;
+        padding-left: 15px;
+        border-radius: 42px;
+        border: 2px solid red;
+        background: #fef2f2;
+        outline: none;
+        transition: .3s linear;
+        box-shadow: 4px -5px 3px red;
+    }
+    .search-item:focus {
+        width: 300px;
+    }
+    .btn {
+        height: 42px;
+        width: 42px;
+        background: #fef2f2;
+        border: 1px solid #324b4e;
+        border-radius: 42px;
+    }
+
+    table
+    {
+        width: 700px;
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    td
+    {
+        background-color: white;
+        border: 2px solid #090909;
+        border-radius: 10px;
+        text-align: center;
+        font-family: Calibri;
+        padding: 10px;
+    }
+    th {
+        background: #151313;
+        font-family: Calibri;
+        color: white;
+        border: 2px solid #be1111;
+        border-bottom: none;
+        border-radius: 20px;
+        padding: 10px;
+    }
+</style>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="header">
+    <h1><span class="home-logo">Я</span> Недвижимость</h1>
+    <div class="home-content">
+        <p>#Выбери квартиру мечты</p>
+        <form th:action="@{/db}">
+            <input class="search-item" type="text" name="keyword" placeholder="Найти..."/>
+            <input class="btn" type="submit" value="&#128270;"/>
+        </form>
+    </div>
+</div>
+
+<table class="db_tab" cellpadding="2px">
+    <tr>
+        <th>Метраж и количество</th>
+        <th>Адрес</th>
+        <th>Метро</th>
+    </tr>
+    <div th:each="el : ${clubs}">
+        <tr>
+            <td th:text="${el.title}"/>
+            <td th:text="${el.section}"/>
+            <td th:text="${el.subway}"/>
+        </tr>
+    </div>
+</table>
+</body>
+</html>
